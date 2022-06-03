@@ -3,35 +3,35 @@
 
 ## Write a short comment describing this function
 
-makeCacheMatrix <- function( m = matrix() ) {
+makeCacheMatrix <- function( b = matrix() ) {
 
-   #setthe inverse property	
-    i <- NULL
+   #set the inverse property	
+    a <- NULL
 
   #set the matrix
     set <- function( matrix ) {
-            m <<- matrix
-            i <<- NULL
+            b <<- matrix
+            a <<- NULL
     }
 
    
     get <- function() {
-    	## Return the matrix
-    	m
+    	# Return the matrix
+    	b
     }
 
-   #set the inverse of the matrix
+   #set the inverse
     setInverse <- function(inverse) {
-        i <<- inverse
+        a <<- inverse
     }
 
-    # get the inverse of the matrix
+    # get the inverse 
     getInverse <- function() {
        
-        i
+        a
     }
 
-    # print a list of the methods
+    # printing list of the methods
     list(set = set, get = get,
          setInverse = setInverse,
          getInverse = getInverse)
@@ -42,23 +42,23 @@ makeCacheMatrix <- function( m = matrix() ) {
 cacheSolve <- function(x, ...) {
 
    
-    m <- x$getInverse()
+    b <- x$getInverse()
 
     
-    if( !is.null(m) ) {
-            message("getting cached data")
-            return(m)
+    if( !is.null(b) ) {
+            message("get cache")
+            return(b)
     }
 
   
     data <- x$get()
 
    
-    m <- solve(data) %*% data
+    b <- solve(data) %*% data
 
     #  inverse to the object
-    x$setInverse(m)
+    x$setInverse(b)
 
    
-    m
+    b
 }
